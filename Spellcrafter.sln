@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spellcrafter", "Spellcrafter.csproj", "{7EAAFDA1-7E2E-4283-9472-506C8A5EBD11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	Release|Any CPU = Release|Any CPU
+	Tools|Any CPU = Tools|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7EAAFDA1-7E2E-4283-9472-506C8A5EBD11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EAAFDA1-7E2E-4283-9472-506C8A5EBD11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EAAFDA1-7E2E-4283-9472-506C8A5EBD11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EAAFDA1-7E2E-4283-9472-506C8A5EBD11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EAAFDA1-7E2E-4283-9472-506C8A5EBD11}.Tools|Any CPU.ActiveCfg = Tools|Any CPU
+		{7EAAFDA1-7E2E-4283-9472-506C8A5EBD11}.Tools|Any CPU.Build.0 = Tools|Any CPU
+	EndGlobalSection
+EndGlobal

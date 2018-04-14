@@ -1,14 +1,16 @@
 using System;
+using Godot;
 
-class AddedDamage : IAugment<IDealsDamage>
+class AddedDamage : IAugment
 {
-    public void Apply(IDealsDamage obj)
+    public void Apply(IAugment obj)
     {
-        throw new NotImplementedException();
+        GD.Print("AddedDamage Applied");
     }
 
-    static AddedDamage()
+    public class Static : AugmentStatic
     {
-        AugmentRegistry.Register(() => new AddedDamage());
+        public Static() : base("added_damage") { }
+        public override IAugment New() => new AddedDamage();
     }
 }

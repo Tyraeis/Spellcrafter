@@ -1,22 +1,27 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public class Tmp : Node
 {
     public override void _Ready()
     {
-        IAugmentTree<TestSkill> a = new AugmentTree<TestSkill>();
+        new AddedDamage.Static().Register();
+        new CastOnHit.Static().Register();
+        new TestSkill.Static().Register();
 
-        IAugmentTree<AddedDamage> b = new AugmentTree<AddedDamage>();
+        AugmentTree a = new AugmentTree("test_skill");
+
+        AugmentTree b = new AugmentTree("added_damage");
         a.AddChild(b);
 
-        IAugmentTree<CastOnHit> c = new AugmentTree<CastOnHit>();
+        AugmentTree c = new AugmentTree("cast_on_hit");
         a.AddChild(c);
 
-        IAugmentTree<TestSkill> d = new AugmentTree<TestSkill>();
+        AugmentTree d = new AugmentTree("test_skill");
         c.AddChild(d);
 
-        TestSkill t = a.Build();
+        TestSkill t = (TestSkill)a.Build();
         t.Cast();
     }
 }

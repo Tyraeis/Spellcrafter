@@ -1,14 +1,22 @@
+using Godot;
 using System;
+using System.Collections.Generic;
 
-class CastOnHit : IAugment<SkillBase>, ICastsSkill
+class CastOnHit : IAugment, ICastsSkill
 {
-    public void Apply(SkillBase skill)
+    public static bool CanApply(IAugment aug)
     {
-        throw new NotImplementedException();
+        return aug is SkillBase;
     }
 
-    static CastOnHit()
+    public void Apply(IAugment skill)
     {
-        AugmentRegistry.Register(() => new CastOnHit());
+        GD.Print("CastOnHit Applied");
+    }
+
+    public class Static : AugmentStatic
+    {
+        public Static() : base("cast_on_hit", "casts_skill") { }
+        public override IAugment New() => new CastOnHit();
     }
 }

@@ -1,11 +1,12 @@
 using System;
+using Godot;
 
-abstract class SkillBase : IAugment<ICastsSkill>
+abstract class SkillBase : IAugment
 {
     public abstract void Cast();
 
-    public void Apply(ICastsSkill obj)
+    public void Apply(IAugment obj)
     {
-        throw new NotImplementedException();
+        GD.Print("SkillBase Applied");
     }
 }

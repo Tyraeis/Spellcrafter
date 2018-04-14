@@ -49,7 +49,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Crafting\BuilderRegistry.cs" />
+    <Compile Include="Crafting\AugmentRegistry.cs" />
     <Compile Include="Crafting\AugmentTree.cs" />
     <Compile Include="Crafting\IAugment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

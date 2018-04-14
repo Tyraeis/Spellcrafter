@@ -1,25 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Create an interface to allow the type parameter to be variant
-// TODO: explain how variance in IAugment and IAugmentTree allow augment compatability to be checked using the type system
-interface IAugmentTree<out T>
+class AugmentTree
 {
-    T Build();
-    void AddChild(IAugmentTree<IAugment<T>> child);
-}
+    string id;
+    List<AugmentTree> children = new List<AugmentTree>();
 
-class AugmentTree<T> : IAugmentTree<T> where T: class
-{
-    List<IAugmentTree<IAugment<T>>> children = new List<IAugmentTree<IAugment<T>>>();
+    public AugmentTree(string id)
+    {
+        this.id = id;
+    }
 
     // Builds the object represented by this AugmentTree.
     // This involves invoking the builder to create the base, recursively building the child augments, then applying the child augments to the base.
-    public T Build()
+    public IAugment Build()
     {
-        T aug = AugmentRegistry.Build<T>();
+        IAugment aug = AugmentRegistry.Build(id);
 
-        foreach (AugmentTree<IAugment<T>> child in children)
+        foreach (AugmentTree child in children)
         {
             child.Build().Apply(aug);
         }
@@ -28,7 +26,7 @@ class AugmentTree<T> : IAugmentTree<T> where T: class
     }
 
     // Adds a child augment
-    public void AddChild(IAugmentTree<IAugment<T>> child)
+    public void AddChild(AugmentTree child)
     {
         children.Add(child);
     }

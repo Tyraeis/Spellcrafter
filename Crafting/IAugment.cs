@@ -1,4 +1,4 @@
-interface IAugment<in T>
+interface IAugment
 {
-    void Apply(T obj);
+    void Apply(IAugment obj);
 }

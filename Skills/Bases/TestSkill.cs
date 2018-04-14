@@ -1,15 +1,16 @@
 using System;
+using Godot;
 
 class TestSkill : SkillBase, IDealsDamage
 {
     public override void Cast()
     {
-        // TODO
-        throw new NotImplementedException();
+        GD.Print("TestSkill Cast");
     }
-    
-    static TestSkill()
+
+    public class Static : AugmentStatic
     {
-        AugmentRegistry.Register(() => new TestSkill());
+        public Static() : base("test_skill", "deals_damage") { }
+        public override IAugment New() => new TestSkill();
     }
 }

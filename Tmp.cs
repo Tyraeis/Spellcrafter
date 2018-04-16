@@ -1,6 +1,6 @@
 using Godot;
-using System;
-using System.Collections.Generic;
+using Spellcrafter.Skills;
+using Spellcrafter.Crafting;
 
 public class Tmp : Node
 {

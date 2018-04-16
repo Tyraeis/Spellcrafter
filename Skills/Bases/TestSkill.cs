@@ -1,16 +1,19 @@
-using System;
 using Godot;
+using Spellcrafter.Crafting;
 
-class TestSkill : SkillBase, IDealsDamage
+namespace Spellcrafter.Skills
 {
-    public override void Cast()
+    class TestSkill : SkillBase, IDealsDamage
     {
-        GD.Print("TestSkill Cast");
-    }
+        public override void Cast()
+        {
+            GD.Print("TestSkill Cast");
+        }
 
-    public class Static : AugmentStatic
-    {
-        public Static() : base("test_skill", "deals_damage") { }
-        public override IAugment New() => new TestSkill();
+        public class Static : SkillStatic
+        {
+            public Static() : base("test_skill", "deals_damage") { }
+            public override IAugment New() => new TestSkill();
+        }
     }
 }

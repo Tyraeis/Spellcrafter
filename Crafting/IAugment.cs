@@ -1,4 +1,7 @@
-interface IAugment
+namespace Spellcrafter.Crafting
 {
-    void Apply(IAugment obj);
+    interface IAugment
+    {
+        void Apply(IAugment obj);
+    }
 }

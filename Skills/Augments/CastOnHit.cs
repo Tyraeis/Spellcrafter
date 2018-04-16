@@ -1,22 +1,30 @@
 using Godot;
-using System;
-using System.Collections.Generic;
+using Spellcrafter.Crafting;
 
-class CastOnHit : IAugment, ICastsSkill
+namespace Spellcrafter.Skills
 {
-    public static bool CanApply(IAugment aug)
+    class CastOnHit : IAugment, ICastsSkill
     {
-        return aug is SkillBase;
-    }
+        SkillBase skill;
 
-    public void Apply(IAugment skill)
-    {
-        GD.Print("CastOnHit Applied");
-    }
+        public void Apply(IAugment skill)
+        {
+            GD.Print("CastOnHit Applied");
+        }
 
-    public class Static : AugmentStatic
-    {
-        public Static() : base("cast_on_hit", "casts_skill") { }
-        public override IAugment New() => new CastOnHit();
+        public void SetSkill(SkillBase skill)
+        {
+            this.skill = skill;
+        }
+
+        public class Static : AugmentStatic
+        {
+            public Static() : base("cast_on_hit", "casts_skill") { }
+            public override IAugment New() => new CastOnHit();
+            public override bool CanApplyTo(AugmentStatic aug)
+            {
+                return true;
+            }
+        }
     }
 }

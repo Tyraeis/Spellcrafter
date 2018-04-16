@@ -1,51 +1,66 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-abstract class AugmentStatic
+namespace Spellcrafter.Crafting
 {
-    public string id;
-    public HashSet<string> props = new HashSet<string>();
-
-    public AugmentStatic(string id, params string[] props)
+    abstract class AugmentStatic
     {
-        this.id = id;
+        public string id;
+        public HashSet<string> props = new HashSet<string>();
 
-        foreach (string i in props)
+        public AugmentStatic(string id, params string[] props)
         {
-            this.props.Add(i);
+            this.id = id;
+
+            foreach (string i in props)
+            {
+                this.props.Add(i);
+            }
         }
+
+        public void Register()
+        {
+            AugmentRegistry.Register(this);
+        }
+
+        public bool Is(params string[] required)
+        {
+            foreach (string i in required)
+            {
+                if (!props.Contains(i))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public abstract IAugment New();
+        public abstract bool CanApplyTo(AugmentStatic aug);
     }
 
-    public void Register()
+    class AugmentRegistry
     {
-        AugmentRegistry.Register(this);
-    }
+        static Dictionary<string, AugmentStatic> registry = new Dictionary<string, AugmentStatic>();
 
-    public abstract IAugment New();
-}
+        public static void Register(AugmentStatic rec)
+        {
+            registry[rec.id] = rec;
+        }
 
-class AugmentRegistry
-{
-    static Dictionary<string, AugmentStatic> registry = new Dictionary<string, AugmentStatic>();
+        public static AugmentStatic Get(string id)
+        {
+            return registry[id];
+        }
 
-    public static void Register(AugmentStatic rec)
-    {
-        registry[rec.id] = rec;
-    }
+        public static IAugment Build(string id)
+        {
+            return Get(id).New();
+        }
 
-    public static AugmentStatic Get(string id)
-    {
-        return registry[id];
-    }
-
-    public static IAugment Build(string id)
-    {
-        return Get(id).New();
-    }
-
-    public static bool CanApply(string id, IAugment aug)
-    {
-        // TODO
-        return true; // Get(id).canApply(aug);
+        public static bool CanApply(string id, string to)
+        {
+            return Get(id).CanApplyTo(Get(to));
+        }
     }
 }

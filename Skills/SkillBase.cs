@@ -1,12 +1,30 @@
-using System;
-using Godot;
+using Spellcrafter.Crafting;
 
-abstract class SkillBase : IAugment
+namespace Spellcrafter.Skills
 {
-    public abstract void Cast();
-
-    public void Apply(IAugment obj)
+    abstract class SkillBase : IAugment
     {
-        GD.Print("SkillBase Applied");
+        public abstract void Cast();
+
+        public void Apply(IAugment obj)
+        {
+            if (obj is ICastsSkill cs)
+            {
+                cs.SetSkill(this);
+            }
+        }
+
+        public abstract class SkillStatic : AugmentStatic
+        {
+            public SkillStatic(string id, params string[] props) : base(id, props)
+            {
+                this.props.Add("skill");
+            }
+
+            public override bool CanApplyTo(AugmentStatic aug)
+            {
+                return aug.Is("casts_skill");
+            }
+        }
     }
 }

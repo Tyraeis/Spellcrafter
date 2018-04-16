@@ -1,4 +1,7 @@
-interface IDealsDamage
+namespace Spellcrafter.Skills
 {
+    interface IDealsDamage
+    {
 
+    }
 }

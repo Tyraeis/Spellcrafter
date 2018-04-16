@@ -1,16 +1,23 @@
-using System;
 using Godot;
+using Spellcrafter.Crafting;
 
-class AddedDamage : IAugment
+namespace Spellcrafter.Skills
 {
-    public void Apply(IAugment obj)
+    class AddedDamage : IAugment
     {
-        GD.Print("AddedDamage Applied");
-    }
+        public void Apply(IAugment obj)
+        {
+            GD.Print("AddedDamage Applied");
+        }
 
-    public class Static : AugmentStatic
-    {
-        public Static() : base("added_damage") { }
-        public override IAugment New() => new AddedDamage();
+        public class Static : AugmentStatic
+        {
+            public Static() : base("added_damage") { }
+            public override IAugment New() => new AddedDamage();
+            public override bool CanApplyTo(AugmentStatic aug)
+            {
+                return true;
+            }
+        }
     }
 }
